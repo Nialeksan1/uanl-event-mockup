@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eventos UANL</title>
+  
+  <!-- Google Fonts: Montserrat (oficial UANL) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Favicon UANL -->
+  <link rel="icon" href="https://www.uanl.mx/wp-content/themes/uanl/assets/img/favicon.ico" type="image/x-icon">
+
+  <style>
+    /* === RESET + TIPOGRAFÍA GLOBAL === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* === NAVBAR (idéntico a eventos.html y login) === */
+    header {
+      background-color: #00205B;
+      color: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo img {
+      height: 50px;
+    }
+
+    .logo h1 {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    nav a:hover, nav a.active {
+      color: #FFB81C;
+    }
+
+    nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #FFB81C;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+      nav {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+    }
+
+    /* === HERO SECTION === */
+    .hero {
+      background: linear-gradient(135deg, #00205b 0%, #003d82 100%);
+      color: white;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .hero h2 {
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.3;
+      font-weight: 700;
+    }
+
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+
+    .search-bar input {
+      flex: 1;
+      min-width: 250px;
+      padding: 0.9rem 1.2rem;
+      border: 1.5px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+      background-color: #fafafa;
+      transition: all 0.3s;
+    }
+
+    .search-bar input:focus {
+      outline: none;
+      border-color: #00205B;
+      background-color: white;
+      box-shadow: 0 0 0 3px rgba(0, 32, 91, 0.1);
+    }
+
+    .search-bar button {
+      background-color: #FFB81C;
+      color: #00205B;
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 1rem;
+      box-shadow: 0 2px 8px rgba(255, 184, 28, 0.2);
+    }
+
+    .search-bar button:hover {
+      background-color: #e6a619;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(255, 184, 28, 0.3);
+    }
+
+    /* === SECCIÓN DESTACADOS === */
+    .destacados {
+      padding: 3rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .destacados h3 {
+      color: #00205B;
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .destacados h3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: #FFB81C;
+      border-radius: 2px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    @media (max-width: 1024px) {
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hero h2 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+      .hero {
+        padding: 3rem 1rem;
+      }
+      .hero h2 {
+        font-size: 1.5rem;
+      }
+      .destacados {
+        padding: 2rem 1rem;
+      }
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 16px rgba(0, 32, 91, 0.08);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 1px solid #e0e0e0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 28px rgba(0, 32, 91, 0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card h4 {
+      color: #00205B;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: #555;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      flex: 1;
+    }
+
+    .card .fecha {
+      color: #FFB81C;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .btn {
+      display: block;
+      text-align: center;
+      background-color: #FFB81C;
+      color: #00205B;
+      text-decoration: none;
+      padding: 0.9rem;
+      border-radius: 10px;
+      font-weight: 600;
+      margin-top: 1rem;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #00205B;
+      color: white;
+    }
+
+    .section-divider {
+      text-align: center;
+      margin: 3rem 0 2rem;
+    }
+
+    .section-divider h3 {
+      color: #00205B;
+      font-size: 1.8rem;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+      padding: 0 2rem;
+    }
+
+    .section-divider h3::before,
+    .section-divider h3::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #FFB81C);
+    }
+
+    .section-divider h3::before { right: 100%; }
+    .section-divider h3::after { left: 100%; background: linear-gradient(to left, transparent, #FFB81C); }
+
+    /* === MODAL === */
+    #modalDetalle {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    #modalDetalle.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: white;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 15px 40px rgba(0, 32, 91, 0.2);
+      position: relative;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .modal-content {
+      padding: 2rem;
+    }
+
+    .modal-card h2 {
+      color: #00205B;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .modal-card p {
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-info {
+      background-color: #f8f9fa;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid #FFB81C;
+    }
+
+    .modal-info p {
+      margin-bottom: 0.6rem;
+      font-size: 0.95rem;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #f0f0f0;
+      border: none;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      color: #666;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .close-btn:hover {
+      background: #e0e0e0;
+      color: #000;
+    }
+
+    .registro-btn {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      background-color: #00205B;
+      color: white;
+    }
+
+    .registro-btn:hover {
+      background-color: #FFB81C;
+      color: #00205B;
+    }
+
+    .registro-btn.cancelar {
+      background-color: #dc3545;
+    }
+
+    .registro-btn.cancelar:hover {
+      background-color: #c82333;
+    }
+
+    /* === CTA SECTION === */
+    .cta-section {
+      background: linear-gradient(135deg, #FFB81C 0%, #e6a619 100%);
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .cta-section h3 {
+      color: #00205B;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      color: #00205B;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: #00205B;
+      color: white;
+      padding: 1rem 3rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(0, 32, 91, 0.3);
+    }
+
+    .cta-button:hover {
+      background-color: #003d82;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 32, 91, 0.4);
+    }
+
+    /* === FOOTER === */
+    footer {
+      background-color: #00205B;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 480px) {
+      .modal-card { margin: 1rem; width: calc(100% - 2rem); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header>
+    <div class="header-content">
+      <div class="logo">
+        <img src="img/Logo_de_la_UANL.svg" alt="Logo UANL">
+        <h1>Eventos UANL</h1>
+      </div>
+      <nav>
+        <a href="index.html" class="active">Inicio</a>
+        <a href="eventos.html">Eventos</a>
+        <a href="login-publico.html">Iniciar sesión</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h2>Explora los próximos eventos de la Universidad Autónoma de Nuevo León</h2>
+    <form action="eventos.html" method="get" class="search-bar">
+      <input type="text" placeholder="Buscar evento por nombre o facultad..." required>
+      <button type="submit">Buscar</button>
+    </form>
+  </section>
+
+  <!-- DESTACADOS -->
+  <section class="destacados">
+    <h3>✨ Eventos Destacados</h3>
+    <div class="cards">
+      <div class="card" onclick="abrirDetalle('Congreso Internacional de Ingeniería', 'FIME', '12 - 14 Noviembre 2025', 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1000', 'Participa en conferencias y talleres sobre las últimas innovaciones en ingeniería. Expertos de todo el mundo compartirán sus conocimientos en áreas como inteligencia artificial, robótica, sustentabilidad y más.')">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1000" alt="Congreso de Ingeniería">
+        <div class="card-content">
+          <h4>Congreso Internacional de Ingeniería</h4>
+          <p>Facultad de Ingeniería Mecánica y Eléctrica</p>
+          <p class="fecha">📅 12 - 14 Noviembre 2025</p>
+          <span class="btn">Ver detalles</span>
+        </div>
+      </div>
+
+      <div class="card" onclick="abrirDetalle('Exposición de Arte Moderno', 'Artes Visuales', '4 Diciembre 2025', 'https://images.unsplash.com/photo-1496317899792-9d7dbcd928a1?q=80&w=1000', 'Disfruta de una muestra de arte contemporáneo con artistas locales e internacionales. Una experiencia única que fusiona diferentes corrientes artísticas del siglo XXI.')">
+        <img src="https://images.unsplash.com/photo-1496317899792-9d7dbcd928a1?q=80&w=1000" alt="Exposición de Arte">
+        <div class="card-content">
+          <h4>Exposición de Arte Moderno</h4>
+          <p>Facultad de Artes Visuales</p>
+          <p class="fecha">📅 4 Diciembre 2025</p>
+          <span class="btn">Ver detalles</span>
+        </div>
+      </div>
+
+      <div class="card" onclick="abrirDetalle('Seminario de Emprendimiento', 'FACPYA', '22 Enero 2026', 'https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=1000', 'Aprende estrategias de negocios y networking con empresarios destacados. Descubre las claves del éxito empresarial y cómo desarrollar tu idea de negocio desde cero.')">
+        <img src="https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=1000" alt="Seminario Emprendimiento">
+        <div class="card-content">
+          <h4>Seminario de Emprendimiento</h4>
+          <p>Facultad de Contaduría Pública y Administración</p>
+          <p class="fecha">📅 22 Enero 2026</p>
+          <span class="btn">Ver detalles</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider">
+      <h3>Próximos Eventos</h3>
+    </div>
+
+    <div class="cards">
+      <div class="card" onclick="abrirDetalle('Jornada de Innovación Médica', 'Medicina', '5 Febrero 2026', 'https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=1000', 'Conferencias y talleres sobre avances médicos y tecnológicos en la salud. Conoce las últimas investigaciones en telemedicina, cirugía robótica y medicina personalizada.')">
+        <img src="https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=1000" alt="Innovación Médica">
+        <div class="card-content">
+          <h4>Jornada de Innovación Médica</h4>
+          <p>Facultad de Medicina</p>
+          <p class="fecha">📅 5 Febrero 2026</p>
+          <span class="btn">Ver detalles</span>
+        </div>
+      </div>
+
+      <div class="card" onclick="abrirDetalle('Taller de Robótica Avanzada', 'FIME', '18 Marzo 2026', 'https://images.unsplash.com/photo-1581092915360-6d2fc4f022eb?q=80&w=1000', 'Participa en actividades prácticas de robótica y automatización con expertos. Diseña, construye y programa robots utilizando las últimas tecnologías disponibles.')">
+        <img src="https://images.unsplash.com/photo-1518314916381-77a37c2a49ae?q=80&w=1000" alt="Robótica">
+        <div class="card-content">
+          <h4>Taller de Robótica Avanzada</h4>
+          <p>Facultad de Ingeniería Mecánica y Eléctrica</p>
+          <p class="fecha">📅 18 Marzo 2026</p>
+          <span class="btn">Ver detalles</span>
+        </div>
+      </div>
+
+      <div class="card" onclick="abrirDetalle('Feria de Ciencias y Tecnología', 'FACPYA', '12 Abril 2026', 'https://images.unsplash.com/photo-1573497491208-6b1acb260507?q=80&w=1000', 'Exposición de proyectos innovadores realizados por estudiantes de diversas facultades. Una oportunidad para conocer el talento y la creatividad de la comunidad universitaria.')">
+        <img src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?q=80&w=1000" alt="Feria de Ciencias">
+        <div class="card-content">
+          <h4>Feria de Ciencias y Tecnología</h4>
+          <p>Facultad de Contaduría Pública y Administración</p>
+          <p class="fecha">📅 12 Abril 2026</p>
+          <span class="btn">Ver detalles</span>
+        </div>
+      </div>
+
+      <div class="card" onclick="abrirDetalle('Coloquio de Derecho Internacional', 'Derecho', '28 Abril 2026', 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1000', 'Debate académico sobre temas actuales de derecho internacional con ponentes expertos. Ideal para estudiantes y profesionales del área jurídica.')">
+        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1000" alt="Derecho">
+        <div class="card-content">
+          <h4>Coloquio de Derecho Internacional</h4>
+          <p>Facultad de Derecho y Criminología</p>
+          <p class="fecha">📅 28 Abril 2026</p>
+          <span class="btn">Ver detalles</span>
+        </div>
+      </div>
+
+      <div class="card" onclick="abrirDetalle('Festival Cultural UANL', 'Rectoría', '15 - 17 Mayo 2026', 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1000', 'Celebración anual con música, danza, teatro y exposiciones de todas las facultades. Tres días de cultura, arte y entretenimiento para toda la comunidad universitaria.')">
+        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1000" alt="Festival Cultural">
+        <div class="card-content">
+          <h4>Festival Cultural UANL</h4>
+          <p>Ciudad Universitaria</p>
+          <p class="fecha">📅 15 - 17 Mayo 2026</p>
+          <span class="btn">Ver detalles</span>
+        </div>
+      </div>
+
+      <div class="card" onclick="abrirDetalle('Simposio de Psicología Clínica', 'Psicología', '8 Junio 2026', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000', 'Actualización profesional en técnicas terapéuticas y últimas investigaciones en salud mental. Con expertos nacionales e internacionales en el campo.')">
+        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000" alt="Psicología">
+        <div class="card-content">
+          <h4>Simposio de Psicología Clínica</h4>
+          <p>Facultad de Psicología</p>
+          <p class="fecha">📅 8 Junio 2026</p>
+          <span class="btn">Ver detalles</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h3>¿Quieres organizar un evento?</h3>
+    <p>Si eres parte de la comunidad UANL y deseas publicar tu evento en nuestra plataforma, inicia sesión y comienza a difundir tus actividades académicas y culturales.</p>
+    <a href="login-publico.html" class="cta-button">Iniciar sesión</a>
+  </section>
+
+  <!-- MODAL -->
+  <div id="modalDetalle">
+    <div class="modal-card">
+      <button class="close-btn" onclick="cerrarDetalle()">×</button>
+      <img id="detalleImagen" src="" alt="Imagen del evento">
+      <div class="modal-content">
+        <h2 id="detalleTitulo"></h2>
+        <p id="detalleDescripcion"></p>
+        <div class="modal-info">
+          <p><strong>Fecha:</strong> <span id="detalleFecha"></span></p>
+          <p><strong>Facultad:</strong> <span id="detalleFacultad"></span></p>
+        </div>
+        <button id="btnRegistro" class="registro-btn" onclick="toggleRegistro()">Registrarse</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Universidad Autónoma de Nuevo León | Dirección de Tecnologías de Información</p>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    const modal = document.getElementById('modalDetalle');
+    const btnRegistro = document.getElementById('btnRegistro');
+
+    function abrirDetalle(titulo, facultad, fecha, imagen, descripcion) {
+      document.getElementById('detalleTitulo').innerText = titulo;
+      document.getElementById('detalleFacultad').innerText = facultad;
+      document.getElementById('detalleFecha').innerText = fecha;
+      document.getElementById('detalleImagen').src = imagen;
+      document.getElementById('detalleDescripcion').innerText = descripcion;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      btnRegistro.innerText = 'Registrarse';
+      btnRegistro.classList.remove('cancelar');
+    }
+
+    function cerrarDetalle() {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    function toggleRegistro() {
+      if (btnRegistro.innerText === 'Registrarse') {
+        btnRegistro.innerText = 'Cancelar registro';
+        btnRegistro.classList.add('cancelar');
+      } else {
+        btnRegistro.innerText = 'Registrarse';
+        btnRegistro.classList.remove('cancelar');
+      }
+    }
+
+    modal.addEventListener('click', e => {
+      if (e.target === modal) cerrarDetalle();
+    });
+  </script>
+</body>
+</html>

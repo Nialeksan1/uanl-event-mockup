@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio de sesión público | Eventos UANL</title>
+  
+  <!-- Google Fonts: Montserrat (oficial UANL) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Icono UANL (opcional, favicon) -->
+  <link rel="icon" href="https://www.uanl.mx/wp-content/themes/uanl/assets/img/favicon.ico" type="image/x-icon">
+
+  <style>
+    /* Reset básico y tipografía */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background-color: #00205B;
+      color: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo img {
+      height: 50px;
+    }
+
+    .logo h1 {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    nav a:hover, nav a.active {
+      color: #FFB81C;
+    }
+
+    nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #FFB81C;
+      border-radius: 2px;
+    }
+
+    /* Main Login Container */
+    .login-container {
+      min-height: 80vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .login-box {
+      background: white;
+      padding: 3rem 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 32, 91, 0.1);
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      border: 1px solid #e0e0e0;
+    }
+
+    .login-box .uanl-logo {
+      width: 100px;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+
+    .login-box h2 {
+      color: #00205B;
+      font-weight: 700;
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .login-box p.subtitle {
+      color: #555;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      color: #00205B;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1.5px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s;
+      background-color: #fafafa;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #00205B;
+      background-color: white;
+      box-shadow: 0 0 0 3px rgba(0, 32, 91, 0.1);
+    }
+
+    .login-btn {
+      background-color: #00205B;
+      color: white;
+      border: none;
+      padding: 0.9rem;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 0.5rem;
+      transition: all 0.3s;
+    }
+
+    .login-btn:hover {
+      background-color: #FFB81C;
+      color: #00205B;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(255, 184, 28, 0.3);
+    }
+
+    .login-box .footer-text {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .login-box .footer-text a {
+      color: #00205B;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .login-box .footer-text a:hover {
+      color: #FFB81C;
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #00205B;
+      color: white;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .login-box {
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+      }
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
+      nav {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <div class="logo">
+        <img src="img/Logo_de_la_UANL.svg" alt="Logo UANL">
+        <h1>Eventos UANL</h1>
+      </div>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="eventos.html">Eventos</a>
+        <a href="login-publico.html" class="active">Iniciar sesión</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="login-container">
+    <div class="login-box">
+      <img src="img/Logo_de_la_UANL.svg" alt="Escudo UANL" class="uanl-logo">
+      <h2>Acceso Público</h2>
+      <p class="subtitle">Ingresa tus credenciales para continuar</p>
+
+      <form action="eventos.html" method="get" onsubmit="alert('¡Bienvenido al portal de Eventos UANL!'); return true;">
+        <div class="form-group">
+          <label for="email">Usuario</label>
+          <input type="tex" id="email" placeholder="tigres@uanl.edu.mx | 1234567" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" placeholder="••••••••••" required>
+        </div>
+
+        <button type="submit" class="login-btn">Ingresar</button>
+      </form>
+
+      <p class="footer-text">
+        ¿No tienes cuenta? <a href="/registro.html">Regístrate aquí</a>
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Universidad Autónoma de Nuevo León | Dirección de Tecnologías de Información</p>
+  </footer>
+
+</body>
+</html>
