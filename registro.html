@@ -320,8 +320,8 @@
       <!-- Selector inicial -->
       <div class="selector-box">
         <div class="selector-btn active" onclick="seleccionarTipo('estudiante')">
-          <strong>Sí, soy estudiante</strong><br>
-          <small>Matrícula UANL</small>
+          <strong>Sí, soy UANL</strong><br>
+          <small>Correo institucional</small>
         </div>
         <div class="selector-btn" onclick="seleccionarTipo('externo')">
           <strong>No, soy externo</strong><br>
@@ -333,8 +333,8 @@
       <div id="formEstudiante" class="form-section active">
         <form id="formEstudianteSubmit" onsubmit="return validarEstudiante(event)">
           <div class="form-group">
-            <label for="matricula">Matrícula (7 dígitos)</label>
-            <input type="text" id="matricula" placeholder="1234567" maxlength="7" required>
+            <label for="matricula">Correo institucional</label>
+            <input type="email" id="matricula" placeholder="correo@uanl.edu.mx" required>
             <div class="verification-status" id="statusMatricula"></div>
           </div>
 
@@ -420,32 +420,7 @@
       const matricula = document.getElementById('matricula').value.trim();
       const status = document.getElementById('statusMatricula');
       const icon = '<svg class="status-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 12l2 2 4-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-
-      if (matricula.length !== 7 || !/^\d+$/.test(matricula)) {
-        status.className = 'verification-status status-error';
-        status.innerHTML = icon + 'Matrícula debe tener 7 dígitos';
-        return false;
       }
-
-      status.className = 'verification-status status-checking';
-      status.innerHTML = icon + 'Verificando con SIASE...';
-
-      await new Promise(r => setTimeout(r, 1300));
-
-      // Matrículas válidas (simuladas)
-      const validas = ['1234567', '9876543', '5555666', '1122334'];
-      const esValida = validas.includes(matricula);
-
-      if (esValida) {
-        status.className = 'verification-status status-success';
-        status.innerHTML = icon + 'Estudiante verificado';
-        return true;
-      } else {
-        status.className = 'verification-status status-error';
-        status.innerHTML = icon + 'Matrícula no encontrada o inactiva';
-        return false;
-      }
-    }
 
     // Validar estudiante
     function validarEstudiante(e) {
@@ -455,11 +430,6 @@
 
       if (password.length < 6) {
         alert('La contraseña debe tener al menos 6 caracteres');
-        return false;
-      }
-
-      if (!verificarEstudiante()) {
-        alert('Por favor ingresa una matrícula válida');
         return false;
       }
 
@@ -492,12 +462,6 @@
         window.location.href = 'login-publico.html';
       }, 1500);
     }
-
-    // Verificación en tiempo real
-    /*document.getElementById('matricula')?.addEventListener('input', () => {
-      clearTimeout(window.timeout);
-      window.timeout = setTimeout(verificarEstudiante, 700);
-    });*/
   </script>
 
 </body>
